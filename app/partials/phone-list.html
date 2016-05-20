@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-3 col-md-3 menu">
+      <h3>Menu: </h3>
+      <!--Sidebar content--> 
+      <div class="search">
+        <p>Search:</p>  
+        <input ng-model="query" type="text" class="form-control" placeholder="search">
+      </div>
+      <div class="sort">
+        <p>Sort by:</p>
+        <select class="form-control" ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="col-xs-9 col-md-9">
+      <!--Body content-->
+      <ul class="phones">
+        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp"
+            class="thumbnail phone-listing">
+          <a href="phones/{{phone.id}}" class="thumb"><img ng-src="app/{{phone.imageUrl}}" alt="{{phone.name}}"></a>
+          <a href="phones/{{phone.id}}">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
