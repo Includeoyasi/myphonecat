@@ -4,10 +4,27 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneAuthCtrl', ['$scope', '$location',
-  function($scope, $location) {
-    $scope.auth = function() {
+phonecatControllers.controller('PhoneAuthCtrl', ['$scope', 'Account', '$location',
+  function($scope, $location, Account) {
+    $scope.accounts = Account.query();
+    console.log($scope.accounts);
+    if($.cookie('uniqueKey')=='123'){
       $location.path('/phones');
+    }else{
+      $scope.loginTrue = 'oyasi';
+      $scope.passwordTrue = '123';
+      $scope.auth = function() {
+        if($scope.login===$scope.loginTrue){
+          if($scope.password===$scope.passwordTrue){
+            $.cookie('uniqueKey', '123');
+            $location.path('/phones');
+          }else{
+            alert("Password is false");
+          }
+        }else{
+          alert("Login is false");
+        } 
+      }
     }
   }]);
 
@@ -31,7 +48,8 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams','$lo
       $location.path('/phones');
     };
 
-    $scope.setImage = function(imageUrl) {
+    $scope.setImage = function(imageUrl, index) {
+      $scope.imgIndex = index;
       $scope.mainImageUrl = imageUrl;
     };
     $scope.focus = function(index) {

@@ -16,6 +16,12 @@ phonecatAnimations.animation('.phone', function() {
     jQuery(element).animate({
       top: 0
     }, done);
+
+    return function(cancel) {
+      if(cancel) {
+        element.stop();
+      }
+    };
   }
 
   var animateDown = function(element, className, done) {
@@ -32,6 +38,12 @@ phonecatAnimations.animation('.phone', function() {
     jQuery(element).animate({
       top: -500
     }, done);
+
+    return function(cancel) {
+      if(cancel) {
+        element.stop();
+      }
+    };
   }
 
   return {

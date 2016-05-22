@@ -12,7 +12,7 @@
     <ul class="phone-thumbs">
       <span ng-click="focus(0)" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <li ng-repeat="img in phone.images">
-        <img ng-class="{focus: mainImageUrl==img}" ng-src="app/{{img}}" ng-click="setImage(img)">
+        <img ng-class="{focus: mainImageUrl==img}" ng-src="app/{{img}}" ng-click="setImage(img, $index)">
       </li>
       <span ng-click="focus(1)" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     </ul>
